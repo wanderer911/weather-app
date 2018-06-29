@@ -16,14 +16,13 @@ class ForecastPeriodContainer extends React.Component {
 
     handleChange(e){
         const { value } = e.target;
-        const { dispatch } = this.props;
-        dispatch(forecastPeriodActions.set(value));
+        this.props.dispatch(forecastPeriodActions.set(value));
     }
 
     render(){
-        const {forecastPeriod} = this.props;
+        const {period} = this.props.forecastPeriod;
         return (
-            <ForecastPeriodComponent onPeriodChange={this.handleChange} period={forecastPeriod.period}/>
+            <ForecastPeriodComponent onPeriodChange={this.handleChange} period={period}/>
         );
     }
 }
