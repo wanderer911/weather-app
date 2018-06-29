@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ForecastPeriodContainer } from './containers';
+import { Page } from './containers';
 import { Router, Route, NavLink, Switch  } from 'react-router-dom';
 import { history } from './helpers';
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ class App extends Component {
       <div className="App">
         <Router history={history}>
           <Switch>
-            <Route component={ForecastPeriodContainer} />
+            <Route component={Page} />
           </Switch>
         </Router>
       </div>

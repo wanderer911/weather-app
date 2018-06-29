@@ -11,7 +11,6 @@ class ForecastPeriodContainer extends React.Component {
 
 	componentDidMount() {
         this.props.dispatch(forecastPeriodActions.get());
-
     }
 
     handleChange(e){
