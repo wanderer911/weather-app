@@ -4,7 +4,7 @@ import React from 'react';
 class ForecastPeriodComponent extends React.Component { 
 	constructor(props){
         super(props);
-		this.state ={period:props.period};
+		this.state ={period: props.period};
 		this.localHandleChange = this.localHandleChange.bind(this);
     }
 

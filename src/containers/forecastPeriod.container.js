@@ -8,9 +8,12 @@ class ForecastPeriodContainer extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     }
+
 	componentDidMount() {
-		this.props.dispatch(forecastPeriodActions.get());
-	}
+        this.props.dispatch(forecastPeriodActions.get());
+
+    }
+
     handleChange(e){
         const { value } = e.target;
         const { dispatch } = this.props;
@@ -18,18 +21,17 @@ class ForecastPeriodContainer extends React.Component {
     }
 
     render(){
-        const {period} = this.props;
+        const {forecastPeriod} = this.props;
         return (
-            <ForecastPeriodComponent onPeriodChange={this.handleChange} period={period}/>
+            <ForecastPeriodComponent onPeriodChange={this.handleChange} period={forecastPeriod.period}/>
         );
     }
-
 }
 
 function mapStateToProps(state) {
 	const { forecastPeriod } = state;
 	return {
-		period:forecastPeriod
+		forecastPeriod
 	};
 }
 
