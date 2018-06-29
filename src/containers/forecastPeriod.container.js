@@ -1,35 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { forecastPeriodActions } from '../actions';
+import { ForecastPeriodComponent } from '../components';
 
 class ForecastPeriodContainer extends React.Component {
     constructor(props){
         super(props);
-        this.state = {period:props.period};
         this.handleChange = this.handleChange.bind(this);
     }
-
+	componentDidMount() {
+		this.props.dispatch(forecastPeriodActions.get());
+	}
     handleChange(e){
-        const { name, value } = e.target;
+        const { value } = e.target;
         const { dispatch } = this.props;
-        this.setState({ [name]: value });
         dispatch(forecastPeriodActions.set(value));
     }
 
     render(){
-        const {period} = state;
+        const {period} = this.props;
         return (
-            <div>
-                <div className="form-control">
-                    <label for="period">SHOW WEATHER FOR</label>
-                    <input type="range" name="period"  min="1" max="7" value={period} onChange={this.handleChange}/>
-                </div>
-            </div>
+            <ForecastPeriodComponent onPeriodChange={this.handleChange} period={period}/>
         );
     }
 
 }
 
+function mapStateToProps(state) {
+	const { forecastPeriod } = state;
+	return {
+		period:forecastPeriod
+	};
+}
 
-const connectedForecastPeriodContainer = connect()(ForecastPeriodContainer);
+
+const connectedForecastPeriodContainer = connect(mapStateToProps)(ForecastPeriodContainer);
 export {connectedForecastPeriodContainer as ForecastPeriodContainer};
