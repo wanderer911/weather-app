@@ -10,13 +10,15 @@ class SearchContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = { address: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleChange = address => {
+  handleChange(address) {
     this.setState({ address });
   };
 
-  handleSelect = address => {
+  handleSelect(address) {
     let result;
     geocodeByAddress(address)
       .then(results => {

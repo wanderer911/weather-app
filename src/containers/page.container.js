@@ -6,15 +6,15 @@ import { connect } from 'react-redux';
 
 class Page extends React.Component {
 	componentDidMount() {
-		const { getPeriod, getScale } = this.props;
+		const { getPeriod, fetchScale } = this.props;
 		getPeriod();
-		getScale();
+		fetchScale();
 	}
 
 	render(){
 		const {forecastPeriod, search, scale, onPeriodChange, onScaleChange} = this.props;
 		return (
-			<div>
+		<div className="container">
 				<SearchContainer/>
 				<ForecastPeriodComponent onPeriodChange={onPeriodChange} period={forecastPeriod}/>
 				<ScaleComponent onScaleChange={onScaleChange} scale={scale}/>
@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
 	onPeriodChange: (e) => dispatch(forecastPeriodActions.set(e)),
 	getPeriod: () => dispatch(forecastPeriodActions.get()),
 	onScaleChange: () => dispatch(scaleActions.toggle()),
-	getScale: () => dispatch(scaleActions.get()) 
+	fetchScale: () => dispatch(scaleActions.get()) 
 });
 
 const connectedPage = connect(mapStateToProps, mapDispatchToProps)(Page);

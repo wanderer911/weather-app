@@ -3,7 +3,7 @@ import { Page } from './containers';
 import { Router, Route, NavLink, Switch  } from 'react-router-dom';
 import { history } from './helpers';
 import { connect } from 'react-redux';
-import './App.css';
+import styles from './App.css';
 
 class App extends Component {
   render() {

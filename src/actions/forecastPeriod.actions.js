@@ -15,9 +15,16 @@ function get(){
 }
 
 function set(e){
+    console.log(e);
     const success = period=>({ type: forecastPeriodConstants.SET, period });
     return dispatch=>{
-        forecastPeriodService.setForecastPeriod(e.target.value);
-        dispatch(success(e.target.value));
+        forecastPeriodService.setForecastPeriod(
+            e
+            //e.target.value
+        );
+        dispatch(success(
+            e
+            //e.target.value
+        ));
     };
 }
