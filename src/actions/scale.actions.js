@@ -3,7 +3,7 @@ import { scaleService } from '../services';
 
 export const scaleActions = {
 	get,
-	set,
+	toggle,
 };
  
 function get() {
@@ -17,15 +17,13 @@ function get() {
     }
 }
  
-function set(scale) {
-
-    const savedScale = scaleService.setScale(scale);
-    return dispatch=>{
-        if(savedScale){
-            dispatch( { type: scaleConstants.SET, scale });
-            return;
-        }
-        dispatch({ type: scaleConstants.SET, scale:undefined });
+function toggle() {
+    return (dispatch, getState)=>{
+        const scale = getState().scale;
+        console.log(getState());
+        const newScale = scale.scale === 'C' ? 'F' : 'C';
+        scaleService.setScale(newScale);
+        dispatch( { type: scaleConstants.SET, scale: newScale });
     }
 
 }

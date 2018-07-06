@@ -1,10 +1,10 @@
 import {forecastPeriodConstants } from '../constants';
 
-export function forecastPeriod(state={period:1},action){
+export function forecastPeriod(state=1,action){
     switch (action.type){
         case forecastPeriodConstants.GET:
         case forecastPeriodConstants.SET:
-            return {period:action.period};
+            return action.period;
         default:
             return state;
     }

@@ -1,38 +1,38 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { forecastPeriodActions } from '../actions';
-import { ForecastPeriodComponent } from '../components';
+// import React from 'react';
+// import { connect } from 'react-redux';
 
-class ForecastPeriodContainer extends React.Component {
-    constructor(props){
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
+// import { ForecastPeriodComponent } from '../components';
 
-	componentDidMount() {
-        this.props.dispatch(forecastPeriodActions.get());
-    }
+// class ForecastPeriodContainer extends React.Component {
+//     constructor(props){
+//         super(props);
+//         this.handleChange = this.handleChange.bind(this);
+//     }
 
-    handleChange(e){
-        const { value } = e.target;
-        this.props.dispatch(forecastPeriodActions.set(value));
-    }
+// 	componentDidMount() {
+//         this.props.dispatch(forecastPeriodActions.get());
+//     }
 
-    render(){
-        const {period} = this.props.forecastPeriod;
-        return (
-            <ForecastPeriodComponent onPeriodChange={this.handleChange} period={period}/>
-        );
-    }
-}
+//     handleChange(e){
+//         const { value } = e.target;
+//         this.props.dispatch(forecastPeriodActions.set(value));
+//     }
 
-function mapStateToProps(state) {
-	const { forecastPeriod } = state;
-	return {
-		forecastPeriod
-	};
-}
+//     render(){
+//         const {period} = this.props.forecastPeriod;
+//         return ('');
+//     }
+// }
+
+// function mapStateToProps(state) {
+// 	const { forecastPeriod } = state;
+// 	return {
+// 		forecastPeriod
+// 	};
+// }
 
 
-const connectedForecastPeriodContainer = connect(mapStateToProps)(ForecastPeriodContainer);
-export {connectedForecastPeriodContainer as ForecastPeriodContainer};
+// const connectedForecastPeriodContainer = connect(mapStateToProps)(ForecastPeriodContainer);
+// export {connectedForecastPeriodContainer as ForecastPeriodContainer};
+
+
