@@ -20,7 +20,6 @@ function get() {
 function toggle() {
     return (dispatch, getState)=>{
         const scale = getState().scale;
-        console.log(getState());
         const newScale = scale.scale === 'C' ? 'F' : 'C';
         scaleService.setScale(newScale);
         dispatch( { type: scaleConstants.SET, scale: newScale });

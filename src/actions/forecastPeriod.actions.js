@@ -15,9 +15,8 @@ function get(){
 }
 
 function set(e){
-    console.log(e.target.value);
     const success = period=>({ type: forecastPeriodConstants.SET, period });
-    return (dispatch,getState)=>{
+    return dispatch=>{
         forecastPeriodService.setForecastPeriod(e.target.value);
         dispatch(success(e.target.value));
     };

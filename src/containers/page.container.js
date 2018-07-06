@@ -1,17 +1,9 @@
 import React from 'react';
-//import { SearchContainer } from './';
 import { forecastPeriodActions, scaleActions, searchActions } from '../actions';
 import {ForecastPeriodComponent, ScaleComponent } from '../components';
+import { SearchContainer } from './';
 import { connect } from 'react-redux';
 
-// const Page = ({forecastPeriod, search, scale, onPeriodChange, onScaleChange}) => {
-// 	return (
-// 		<div>
-// 		   <ForecastPeriodComponent onPeriodChange={onPeriodChange} period={forecastPeriod}/>
-// 		   <ScaleComponent onScaleChange={onScaleChange} scale={scale}/>
-// 		</div>
-// 	);
-// };
 class Page extends React.Component {
 	componentDidMount() {
 		const { getPeriod, getScale } = this.props;
@@ -23,6 +15,7 @@ class Page extends React.Component {
 		const {forecastPeriod, search, scale, onPeriodChange, onScaleChange} = this.props;
 		return (
 			<div>
+				<SearchContainer/>
 				<ForecastPeriodComponent onPeriodChange={onPeriodChange} period={forecastPeriod}/>
 				<ScaleComponent onScaleChange={onScaleChange} scale={scale}/>
 			</div>
@@ -37,12 +30,11 @@ const mapStateToProps = (state) => ({
 	search: state.search
 })
 
-const mapDispatchToProps = (dispatch,state) => ({
+const mapDispatchToProps = dispatch => ({
 	onPeriodChange: (e) => dispatch(forecastPeriodActions.set(e)),
 	getPeriod: () => dispatch(forecastPeriodActions.get()),
 	onScaleChange: () => dispatch(scaleActions.toggle()),
 	getScale: () => dispatch(scaleActions.get()) 
-
 });
 
 const connectedPage = connect(mapStateToProps, mapDispatchToProps)(Page);
