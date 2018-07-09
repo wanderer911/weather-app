@@ -30,7 +30,6 @@ class SearchContainer extends React.Component {
   
         const {formatted_address,place_id} = result[0];
         console.log('Success', latLng,result[0]);
-        //action of 
         cityActions.addCity({latLng,formatted_address,place_id});
     })
       .catch(error => console.error('Error', error));
@@ -58,39 +57,3 @@ function mapStateToProps(state) {
 
 const connectedSearchContainer = connect(mapStateToProps)(SearchContainer);
 export {connectedSearchContainer as SearchContainer};
-
-{/* 
-{({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input',
-              })}
-            />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-              {suggestions.map(suggestion => {
-                const className = suggestion.active
-                  ? 'suggestion-item--active'
-                  : 'suggestion-item';
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style,
-                    })}
-                  >
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-        */
-}
