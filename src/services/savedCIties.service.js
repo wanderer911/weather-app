@@ -18,7 +18,7 @@ function getCities(){
     }
 }
 
-function getCity(place_id){
+function getCity({place_id}){
     try{
         const citiesString = localStorage.getItem('cities');
         const cities = JSON.parse(citiesString) || [];

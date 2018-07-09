@@ -3,7 +3,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import {searchActions} from '../actions';
+import {cityActions} from '../actions';
 import { connect } from 'react-redux';
 import {SearchListComponent} from '../components';
 
@@ -31,7 +31,7 @@ class SearchContainer extends React.Component {
         const {formatted_address,place_id} = result[0];
         console.log('Success', latLng,result[0]);
         //action of 
-        searchActions.select({latLng,formatted_address,place_id});
+        cityActions.addCity({latLng,formatted_address,place_id});
     })
       .catch(error => console.error('Error', error));
   };
@@ -50,9 +50,9 @@ class SearchContainer extends React.Component {
   }
 }
 function mapStateToProps(state) {
-	const { search } = state;
+	const { city } = state;
 	return {
-		search
+		city
 	};
 }
 

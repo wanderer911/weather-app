@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-// import { Page } from './containers';
+
 import { Router, Route, NavLink, Switch  } from 'react-router-dom';
 import { history } from './helpers';
 import { connect } from 'react-redux';
 import styles from './App.css';
 import { forecastPeriodActions, scaleActions } from './actions';
 import {ForecastPeriodComponent, ScaleComponent } from './components';
-import { SearchContainer } from './containers';
+import { SearchContainer, SavedCitiesContainer } from './containers';
+
 
 class App extends Component {
 
@@ -21,22 +22,46 @@ class App extends Component {
     return (
       <div className="container">
         <Router history={history}>
-          <Switch>
-            <Route component={SearchContainer} />
-          </Switch>
+          <div className="router">
+            <nav className="navbar navbar-expand-md navbar-dark mb-4 my-nav">
+              <NavLink to="/" >Start</NavLink>
+              <NavLink to="/saved-cities" className="navbar-brand my-navlink">Saved cities</NavLink>
+            </nav>
+            <Switch>
+              <Route exact path="/" component={SearchContainer} />
+              <PropsRoute path="/saved-cities" component={SavedCitiesContainer} period={forecastPeriod} scale={scale}/>
+            </Switch>
+          </div>
         </Router>
         <ScaleComponent onScaleChange={onScaleChange} scale={scale}/>
         <ForecastPeriodComponent onPeriodChange={onPeriodChange} period={forecastPeriod}/>
+
       </div>
     );
   }
 }
 
+const renderMergedProps = (component, ...rest) => {
+  const finalProps = Object.assign({}, ...rest);
+  return (
+    React.createElement(component, finalProps)
+  );
+}
+
+const PropsRoute = ({ component, ...rest }) => {
+  return (
+    <Route {...rest} render={routeProps => {
+      return renderMergedProps(component, routeProps, rest);
+    }}/>
+  );
+};
+
+
 const mapStateToProps = (state) => ({
 	scale: state.scale,
 	forecastPeriod: state.forecastPeriod,
-	search: state.search
-})
+	cities: state.cities
+});
 
 const mapDispatchToProps = dispatch => ({
 	onPeriodChange: (e) => dispatch(forecastPeriodActions.set(e)),
