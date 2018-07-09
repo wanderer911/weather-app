@@ -5,6 +5,7 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import {searchActions} from '../actions';
 import { connect } from 'react-redux';
+import {SearchListComponent} from '../components';
 
 class SearchContainer extends React.Component {
   constructor(props) {
@@ -42,7 +43,24 @@ class SearchContainer extends React.Component {
         onChange={this.handleChange}
         onSelect={this.handleSelect}
       >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+        {SearchListComponent}
+
+      </PlacesAutocomplete>
+    );
+  }
+}
+function mapStateToProps(state) {
+	const { search } = state;
+	return {
+		search
+	};
+}
+
+const connectedSearchContainer = connect(mapStateToProps)(SearchContainer);
+export {connectedSearchContainer as SearchContainer};
+
+{/* 
+{({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
             <input
               {...getInputProps({
@@ -74,16 +92,5 @@ class SearchContainer extends React.Component {
             </div>
           </div>
         )}
-      </PlacesAutocomplete>
-    );
-  }
+        */
 }
-function mapStateToProps(state) {
-	const { search } = state;
-	return {
-		search
-	};
-}
-
-const connectedSearchContainer = connect(mapStateToProps)(SearchContainer);
-export {connectedSearchContainer as SearchContainer};

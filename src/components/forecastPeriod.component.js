@@ -4,17 +4,14 @@ import Slider from 'wix-style-react/Slider';
 
 const ForecastPeriodComponent = ({onPeriodChange, period}) =>(
     <div>
-        <div className="form-control">
+        <div className="forecast-period">
             <label htmlFor="period">SHOW WEATHER FOR</label>
+            <p className="forecast-period__period">{period} days</p>
             <Slider  value={[+period]} min={1} max={7}  onChange={onPeriodChange}/>
-            <p>{period} days</p>
+
         </div>
     </div>
 );
 
 export {ForecastPeriodComponent};
 
-{/* 
-<input type="range" name="period"  min="1" max="7" value={period} onChange={onPeriodChange}/>
-<Slider  value={[3]} min={1} max={7} displayMarks={true} onChange={onPeriodChange}/> */}
-//
