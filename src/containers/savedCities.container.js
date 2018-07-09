@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { citiesActions } from '../actions';
+import { CityListItemComponent } from '../components';
 
 class SavedCitiesContainer extends React.Component {
     componentDidMount() {
@@ -9,22 +10,18 @@ class SavedCitiesContainer extends React.Component {
 	}
 
     render(){
-        const {scale,period,city,cities} = this.props;
+        const {scale,period,cities} = this.props;
         console.log(cities);
         return (
             <div>
-                current scale = {scale},
-                current forecastPeriod = {period}
-                {cities.map(el=>(<p>{el.formatted_address}</p>) )}
+                <p>current scale = {scale}, current forecastPeriod = {period}</p>
+                {cities.map(el=><CityListItemComponent city={el}/>)}
             </div>
         )
     }
 }
 
-
-
 const mapStateToProps = (state) => ({
-    city: state.city,
     cities: state.cities
 });
 

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import styles from './App.css';
 import { forecastPeriodActions, scaleActions } from './actions';
 import {ForecastPeriodComponent, ScaleComponent } from './components';
-import { SearchContainer, SavedCitiesContainer } from './containers';
+import { SearchContainer, SavedCitiesContainer,CityDetailsContainer } from './containers';
 
 
 class App extends Component {
@@ -29,6 +29,7 @@ class App extends Component {
             </nav>
             <Switch>
               <Route exact path="/" component={SearchContainer} />
+              <Route path="/city/:place_id" component={CityDetailsContainer} />
               <PropsRoute path="/saved-cities" component={SavedCitiesContainer} period={forecastPeriod} scale={scale}/>
             </Switch>
           </div>
