@@ -1,15 +1,15 @@
 import React from 'react';
-import { cityActions } from '../actions';
+import { cityActions ,forecastActions} from '../actions';
 import { connect } from 'react-redux';
 
 class CityDetailsContainer extends React.Component {
     componentDidMount(){
-        const {getCity} = this.props;
-        getCity(this.props.match.params.place_id);
+        const {getCity,getForecast} = this.props;
+        getForecast(getCity(this.props.match.params.place_id));
     }
+
     render(){
-        const {city} = this.props;
-        console.log(city);
+        const {city, forecast, getForecast} = this.props;
         if (!city){
             return <p>City is not found</p>;
         }
@@ -22,12 +22,14 @@ class CityDetailsContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    city: state.city
+    city: state.city,
+    forecast: state.forecast
 });
 
 
 const mapDispatchToProps = dispatch => ({
-    getCity: (place_id) => dispatch(cityActions.getByPlaceId(place_id))
+    getCity: (place_id) => dispatch(cityActions.getByPlaceId(place_id)),
+    getForecast: (city) => dispatch(forecastActions.fetchForecast(city))
 });
 
 

@@ -6,7 +6,7 @@ export function city(state={},action){
         case cityConstants.ADD:
         case cityConstants.DELETE:
         case cityConstants.GETBY_PLACEID:
-            return action.city?action.city:state;
+            return action.city?action.city:{};
         default:
             return state;
     }

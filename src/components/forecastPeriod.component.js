@@ -6,7 +6,7 @@ const ForecastPeriodComponent = ({onPeriodChange, period}) =>(
     <div className="forecast-period">
         <label htmlFor="period">SHOW WEATHER FOR</label>
         <p className="forecast-period__period">{period} days</p>
-        <Slider  value={[+period]} min={1} max={7}  onChange={onPeriodChange}/>
+        <Slider  value={[+period]} min={1} max={5}  onChange={onPeriodChange}/>
     </div>
 );
 
