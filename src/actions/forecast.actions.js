@@ -7,11 +7,13 @@ export const forecastActions = {
 };
 
 function fetchForecast(){
-    return async (dispatch,currentState)=>{
-        const {lat, lng} = currentState().city.latLng;
+    return async (dispatch,getState)=>{
+        const {lat, lng} = getState().city.latLng;
+        const { scale } = getState().scale ==='C'?'metric':'imperial';
+
         try{
-            const forecast = await forecastPeriodService.getForecastByLatLng(lat, lng);
-            dispatch({ type: forecastConstants.GET_BY_LATLNG, forecast:forecast });
+            const forecast = await forecastPeriodService.getForecastByLatLng(lat, lng,scale);
+            dispatch({ type: forecastConstants.GET_BY_LATLNG, forecast });
         } catch (e){
             console.log(e);
             dispatch({ type: forecastConstants.GET_BY_LATLNG });

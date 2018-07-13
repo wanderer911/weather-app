@@ -26,9 +26,9 @@ function setForecastPeriod(number){
     }
 }
 
-async function getForecastByLatLng(latitude,longitude){
+async function getForecastByLatLng(latitude,longitude,scale){
     const key = '6866075b0c665a854c8731d19df394eb';
-    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${key}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`;
     try{
         const result = await fetch(url,{
             method: 'get'
