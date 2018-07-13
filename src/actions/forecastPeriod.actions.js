@@ -14,17 +14,10 @@ function get(){
     };
 }
 
-function set(e){
-    console.log(e);
+function set(value){
     const success = period=>({ type: forecastPeriodConstants.SET, period });
     return dispatch=>{
-        forecastPeriodService.setForecastPeriod(
-            e
-            //e.target.value
-        );
-        dispatch(success(
-            e
-            //e.target.value
-        ));
+        forecastPeriodService.setForecastPeriod(value);
+        dispatch(success(value));
     };
 }

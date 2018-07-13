@@ -11,10 +11,16 @@ class SavedCitiesContainer extends React.Component {
 
     render(){
         const {scale,period,cities} = this.props;
+        let element;
+        if(cities.length){
+            element = cities.map(el=><CityListItemComponent city={el}/>);
+        }else {
+            element = <p>No cities has been added yet</p>;
+        }
         return (
             <div>
                 <p>current scale = {scale}, current forecastPeriod = {period}</p>
-                {cities.map(el=><CityListItemComponent city={el}/>)}
+                {element}
             </div>
         )
     }

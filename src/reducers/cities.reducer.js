@@ -3,7 +3,7 @@ import { citiesConstants} from '../constants';
 export function cities(state=[],action){
     switch (action.type){
         case citiesConstants.GET_ALL:
-            return action.cities;
+            return action.cities?action.cities:state;
         default:
             return state; 
     }
