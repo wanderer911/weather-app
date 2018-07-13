@@ -11,11 +11,7 @@ export const citiesActions = {
 function getAllCities(){
     const allCities = citiesService.getCities();
     return dispatch=>{
-        if(allCities.length){
-            dispatch({type: citiesConstants.GET_ALL,cities:allCities})
-            return;
-        }
-        dispatch({type: citiesConstants.GET_ALL,cities:undefined});
+        dispatch({type: citiesConstants.GET_ALL,cities:allCities});
     }
 }
 

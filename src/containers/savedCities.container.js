@@ -5,13 +5,12 @@ import { CityListItemComponent } from '../components';
 
 class SavedCitiesContainer extends React.Component {
     componentDidMount() {
-		const { getCities } = this.props;
-        getCities();
+		const { fetchCities } = this.props;
+        fetchCities();
 	}
 
     render(){
         const {scale,period,cities} = this.props;
-        console.log(cities);
         return (
             <div>
                 <p>current scale = {scale}, current forecastPeriod = {period}</p>
@@ -27,7 +26,7 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    getCities: () => dispatch(citiesActions.getAllCities())
+    fetchCities: () => dispatch(citiesActions.getAllCities())
 });
 
 

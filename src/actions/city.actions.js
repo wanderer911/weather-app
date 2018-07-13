@@ -12,24 +12,15 @@ export const cityActions = {
 function deleteCity(city){
     const deletedCity = citiesService.removeCity(city);
     return dispatch=>{
-        if(deletedCity){
-            dispatch({type: cityConstants.DELETE, city: deletedCity});
-            return;
-        }
-        dispatch({type: cityConstants.ADD,city:undefined});
-    }
-
+        dispatch({type: cityConstants.DELETE, city: deletedCity});
+    };
 } 
 
-function getByPlaceId(city){
-    const selectedCity = citiesService.getCity(city);
+function getByPlaceId(placeId){
+    const selectedCity = citiesService.getCity(placeId);
     return dispatch=>{
-        if(selectedCity){
-            dispatch({type: cityConstants.GETBY_PLACEID, city: selectedCity});
-            return;
-        }
-        dispatch({type: cityConstants.GETBY_PLACEID, city: undefined});
-    }
+        dispatch({type: cityConstants.GETBY_PLACEID, city: selectedCity});
+    };
 }
 
 function addCity(city){
@@ -39,7 +30,7 @@ function addCity(city){
             dispatch({type: cityConstants.ADD,city});
             return;
         }
-        dispatch({type: cityConstants.ADD,city:undefined});
-    }
+        dispatch({type: cityConstants.ADD});
+    };
 }
 

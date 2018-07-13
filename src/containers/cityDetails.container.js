@@ -18,16 +18,17 @@ class CityDetailsContainer extends React.Component {
     }
 
     render(){
-        const {city, forecast,forecast:{list},scale,forecastPeriod} = this.props;
-        // const {list} = forecast;
+        const {city,forecast:{list},scale,forecastPeriod} = this.props;
         let data;
         if(list && list.length){
             data = convertMinMax(list,forecastPeriod);
         }
         if (!city || !data){
             return <p>City is not found</p>;
+        }else if(city && !data){
+            return <p>Loading ...</p>;
         }
-        else if (city && data){
+        else {
             return(
                 <div>
                     <p>{city.formatted_address}</p>
@@ -40,8 +41,6 @@ class CityDetailsContainer extends React.Component {
                     })}
                 </div>
             );
-        }else{
-            return <p> wut </p>;
         }
     }
 }
